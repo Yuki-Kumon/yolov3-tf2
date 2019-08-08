@@ -27,6 +27,7 @@ flags.DEFINE_boolean('tiny', False, 'yolov3 or yolov3-tiny')
 flags.DEFINE_integer('size', 416, 'resize images to')
 flags.DEFINE_string('image', './data/girl.png', 'path to input image')
 flags.DEFINE_string('output', './output.jpg', 'path to output image')
+flags.DEFINE_string('save_name', '', 'path to output model')
 
 
 def main(_argv):
@@ -46,6 +47,8 @@ def main(_argv):
         save_name = './output/yolov3-tf2-tiny.h5'
     else:
         save_name = './output/yolov3-tf2.h5'
+    if FLAGS.save_name:
+        save_name = FLAGS.save_name
     yolo.save(save_name)
     logging.info('model is saved as {}'.format(save_name))
     del yolo
